@@ -9,6 +9,6 @@ public record CustomerRequest(
 ) {
 
     public Customer toDomain() {
-        return new Customer(null, this.name(), this.email(), null, null);
+        return new Customer(null, this.name(), this.email(), null, null, null);
     }
 }

@@ -1,7 +1,5 @@
 package com.fcs.bookstore.customer;
 
-import com.fcs.bookstore.author.Author;
-import com.fcs.bookstore.author.AuthorRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,5 +13,9 @@ public class CustomerService {
 
     public Customer createCustomer(Customer customer) {
         return this.repository.save(customer);
+    }
+
+    public Customer getCustomer(final Long id) {
+        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Customer not found."));
     }
 }

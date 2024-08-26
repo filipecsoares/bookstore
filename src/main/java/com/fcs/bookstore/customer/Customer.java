@@ -14,16 +14,23 @@ public class Customer {
     private String email;
     private String address;
     private String cep;
+    @Enumerated(EnumType.STRING)
+    private CustomerType type;
 
     public Customer() {
     }
 
-    public Customer(Long id, String name, String email, String address, String cep) {
+    public Customer(Long id) {
+        this.id = id;
+    }
+
+    public Customer(Long id, String name, String email, String address, String cep, CustomerType type) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.address = address;
         this.cep = cep;
+        this.type = type;
     }
 
     public Long getId() {
@@ -44,5 +51,9 @@ public class Customer {
 
     public String getCep() {
         return cep;
+    }
+
+    public CustomerType getType() {
+        return type;
     }
 }
