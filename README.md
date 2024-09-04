@@ -3,6 +3,15 @@
 This is a simple Spring Boot project demonstrating the use of design patterns in a bookstore management system.
 This is an activity for a course on Development with Spring.
 
+## Main Technologies
+
+- **Java 21**: Programming language.
+- **Spring Boot 3**: Framework for building Spring based applications quickly.
+- **Spring Data JPA**: Simplifies data access with ORM.
+- **H2 Database**: In-memory database for development.
+- **OpenAPI**: API documentation.
+- **JUnit 5**: Testing framework.
+
 ## Features
 
 - Manage books, customers, authors, and place orders.
