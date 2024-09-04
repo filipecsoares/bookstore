@@ -15,4 +15,9 @@ public class AuthorServiceImpl implements AuthorService {
     public Author createAuthor(Author author) {
         return this.repository.save(author);
     }
+
+    @Override
+    public Author getAuthor(Long id) {
+        return this.repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Author not found."));
+    }
 }

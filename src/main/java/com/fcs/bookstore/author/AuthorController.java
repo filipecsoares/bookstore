@@ -3,10 +3,9 @@ package com.fcs.bookstore.author;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/v1/authors")
@@ -19,7 +18,14 @@ public class AuthorController {
     }
 
     @PostMapping
-    public ResponseEntity<AuthorResponse> createBook(@RequestBody @Valid AuthorRequest request) {
-        return new ResponseEntity<>(AuthorResponse.fromDomain(this.service.createAuthor(request.toDomain())), HttpStatus.CREATED);
+    public ResponseEntity<AuthorResponse> create(@RequestBody @Valid AuthorRequest request) {
+        var author = this.service.createAuthor(request.toDomain());
+        var location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(author.getId()).toUri();
+        return ResponseEntity.created(location).body(AuthorResponse.fromDomain(author));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AuthorResponse> getAuthor(@PathVariable Long id) {
+        return ResponseEntity.ok(AuthorResponse.fromDomain(this.service.getAuthor(id)));
     }
 }
