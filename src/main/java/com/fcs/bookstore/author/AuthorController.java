@@ -1,9 +1,7 @@
 package com.fcs.bookstore.author;
 
-import com.fcs.bookstore.book.BookRequest;
-import com.fcs.bookstore.book.BookResponse;
-import com.fcs.bookstore.book.BookService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +20,6 @@ public class AuthorController {
 
     @PostMapping
     public ResponseEntity<AuthorResponse> createBook(@RequestBody @Valid AuthorRequest request) {
-        return ResponseEntity.ok(AuthorResponse.fromDomain(this.service.createAuthor(request.toDomain())));
+        return new ResponseEntity<>(AuthorResponse.fromDomain(this.service.createAuthor(request.toDomain())), HttpStatus.CREATED);
     }
 }
