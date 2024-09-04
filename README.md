@@ -17,6 +17,51 @@ This is an activity for a course on Development with Spring.
 - Manage books, customers, authors, and place orders.
 - Apply different discounts based on customer type (Regular, Premium, VIP).
 
+## Class Diagram
+
+```mermaid
+classDiagram
+    class Book {
+      - Long id
+      - String title
+      - Author author
+      - String isbn
+      - Integer releasedYear
+      - Integer pages
+      - BigDecimal price
+    }
+    
+    class Author {
+      - Long id
+      - String name
+      - String email
+      - String bio
+    }
+    
+    class Customer {
+      - Long id
+      - String name
+      - String email
+      - String address
+      - String cep
+      - CustomerType type
+    }
+    
+    class Order {
+      - Long id
+      - UUID code
+      - Customer customer
+      - Book book
+      - Integer quantity
+      - BigDecimal total
+      - OrderStatus status
+    }
+    
+    Book "1" -- "1..*" Author
+    Customer "1" -- "1..*" Order
+    Book "1" -- "1..*" Order
+```
+
 ## Design Patterns Used
 
 - Strategy Pattern: Applies different discount strategies based on customer type.
